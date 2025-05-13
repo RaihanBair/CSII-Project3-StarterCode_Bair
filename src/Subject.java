@@ -1,4 +1,4 @@
-public enum ClassSubjects {
+public enum Subject {
     MATH,
     LANGUAGE,
     HISTORY,

@@ -7,7 +7,18 @@ public class Student {
     private boolean support;
     private boolean notice;
     private String extraC;
-    private String subject;
+    private Subject subject;
+
+    public Student(String name, String course, int hours, int classes, boolean support, boolean notice, String extraC, Subject subject) {
+        this.id = UUID.randomUUID().toString();;
+        this.hours = hours;
+        this.classes = classes;
+        this.support = support;
+        this.notice = notice;
+        this.extraC = extraC;
+        this.subject = subject;
+    }
+
 
     public Student(String name, String course) {
         this.id = UUID.randomUUID().toString();;
