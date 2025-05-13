@@ -3,7 +3,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        // TO DO: Create a Student List object that stores preloaded student objects
+        // TODO: Create a Student List object that stores preloaded student objects
         ArrayList<Student> student = new ArrayList<>();
 
         // Student objects should be each student with info you collected
