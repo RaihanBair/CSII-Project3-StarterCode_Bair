@@ -44,20 +44,20 @@ public class Main {
     private static void createStudent(Scanner scanner) {
         System.out.print("Enter student ID: ");
         String id = scanner.nextLine();
-        // TO DO: fill out the rest of this
+        // TODO: fill out the rest of this
 
-        // TO DO: create a student object with this information
+        // TODO: create a student object with this information
         StudentList.createStudent(student);
         System.out.println("Student created successfully!");
     }
 
     private static void readStudents(Scanner scanner) {
         List<Student> students = StudentList.readStudents();
-        // TO DO: print out each student
+        // TODO: print out each student
     }
 
     private static void updateStudent(Scanner scanner) {
-        // TO DO: ask for new information to update student
+        // TODO: ask for new information to update student
 
         Student student = new Student(id, name, course);
         StudentList.updateStudent(student);
@@ -65,7 +65,7 @@ public class Main {
     }
 
     private static void deleteStudent(Scanner scanner) {
-        // TO DO: ask for student ID and store in a variable
+        // TODO: ask for student ID and store in a variable
 
         Student student = new Student(id, "", "");
         StudentList.deleteStudent(student);
