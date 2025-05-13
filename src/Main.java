@@ -42,8 +42,9 @@ public class Main {
     }
 
     private static void createStudent(Scanner scanner) {
-        System.out.print("Enter student ID: ");
-        String id = scanner.nextLine();
+        int hwTime = inputInt(scanner, "On average, how long does it take to complete homework on an average night?");
+        int numClasses = inputInt(scanner, "You will take 6 academic classes next year. True or False?");
+        //int givenNotice =
         // TODO: fill out the rest of this
 
         // TODO: create a student object with this information
@@ -70,5 +71,15 @@ public class Main {
         Student student = new Student(id, "", "");
         StudentList.deleteStudent(student);
         System.out.println("Student deleted successfully!");
+    }
+
+    private static String input(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        return scanner.nextLine();
+    }
+
+    private static int inputInt(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        return scanner.nextInt();
     }
 }
