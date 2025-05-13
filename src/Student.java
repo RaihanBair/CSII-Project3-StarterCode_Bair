@@ -1,7 +1,7 @@
+import java.util.UUID;
+
 public class Student {
-    private String id;
-    private String name;
-    private String course; // add question variables
+    private final String id;
     private int hours;
     private int classes;
     private boolean support;
@@ -9,42 +9,19 @@ public class Student {
     private String extraC;
     private String subject;
 
-    public Student(String id, String name, String course) {
-        this.id = id;
-        this.name = name;
-        this.course = course;
+    public Student(String name, String course) {
+        this.id = UUID.randomUUID().toString();;
         this.hours = hours;
         this.classes = classes;
         this.support = support;
         this.notice = notice;
         this.extraC = extraC;
         this.subject = subject;
-
     }
 
     // Getters and setters
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
     }
 
     @Override
@@ -56,3 +33,14 @@ public class Student {
                 '}';
     }
 }
+
+//public record Student(String id, int hours, int classes, boolean support, boolean notice, String extraC, String subject){
+//    @Override
+//    public String toString() { // TODO: EDIT TOSTRING
+//        return "Student{" +
+//                "id='" + id + '\'' +
+//                ", name='" + name + '\'' +
+//                ", course='" + course + '\'' +
+//                '}';
+//    }
+//}
