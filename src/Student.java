@@ -80,6 +80,7 @@ public class Student implements CsvSerializable<Student> {
 
     public Student fromLine(String line) {
         // TODO
+        return new Student(0, 0, false, false, null, null);
     }
 
 
