@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.UUID;
 
 public class Student implements CsvSerializable<Student> {
