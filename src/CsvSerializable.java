@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public interface CsvSerializable<T extends CsvSerializable<T>> {
     String DELIM = ",";
