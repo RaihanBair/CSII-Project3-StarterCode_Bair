@@ -1,6 +1,7 @@
+import java.util.List;
 import java.util.UUID;
 
-public class Student {
+public class Student implements CsvSerializable<Student> {
     private final String id;
     private int hwTime;
     private int numClasses;
@@ -71,6 +72,17 @@ public class Student {
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
+
+    @Override
+    public String toLine() {
+        // TODO
+        return "";
+    }
+
+    public Student fromLine(String line) {
+        // TODO
+    }
+
 
     //    @Override
 //    public String toString() {
