@@ -1,85 +1,104 @@
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
+    private static final String CSV_PATH = "students.csv";
+
     public static void main(String[] args) {
+        List<Student> students = new ArrayList<>();
+        // using empty student to use interface messages
+        Student csvHelper = new Student(0, 0, false, false, "", Subject.MATH);
+
+        try {
+            students = csvHelper.readAll(CSV_PATH);
+            System.out.println("Loaded " + students.size() + " students.");
+        } catch (IOException e) {
+            System.out.println("Could not load students from CSV. Starting with an empty list.");
+        }
+
         Scanner scanner = new Scanner(System.in);
-        // TODO: Create a Student List object that stores preloaded student objects
-        ArrayList<Student> student = new ArrayList<>();
+        boolean running = true;
 
-        // Student objects should be each student with info you collected
+        while (running) {
+            clearScreen();
+            System.out.println("\nMenu:");
+            System.out.println("1. Add Student");
+            System.out.println("2. Remove Student");
+            System.out.println("3. List Students");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            String choice = scanner.nextLine();
 
-        while (true) {
-            System.out.println("1. Create Student");
-            System.out.println("2. Read Students");
-            System.out.println("3. Update Student");
-            System.out.println("4. Delete Student");
-            System.out.println("5. Exit");
-
-            System.out.print("Choose an option: ");
-            int option = scanner.nextInt();
-            scanner.nextLine(); // Consume newline left-over
-
-            switch (option) {
-                case 1:
-                    createStudent(scanner);
+            switch (choice) {
+                case "1":
+                    Student newStudent = inputStudent(scanner);
+                    students.add(newStudent);
+                    System.out.println("Student added.");
                     break;
-                case 2:
-                    readStudents(scanner);
+                case "2":
+                    System.out.print("Enter student index to remove: ");
+                    try {
+                        int idx = Integer.parseInt(scanner.nextLine());
+                        if (idx >= 0 && idx < students.size()) {
+                            students.remove(idx);
+                            System.out.println("Student removed.");
+                        } else {
+                            System.out.println("Invalid index.");
+                        }
+                    } catch (NumberFormatException ex) {
+                        System.out.println("Invalid input.");
+                    }
                     break;
-                case 3:
-                    updateStudent(scanner);
+                case "3":
+                    for (int i = 0; i < students.size(); i++) {
+                        System.out.println(i + ": " + students.get(i));
+                    }
+                    System.out.print("Press Enter to continue...");
+                    scanner.nextLine();
                     break;
-                case 4:
-                    deleteStudent(scanner);
+                case "0":
+                    running = false;
                     break;
-                case 5:
-                    System.out.println("Exiting...");
-                    return;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("Invalid choice. Try again.");
             }
+        }
+
+        // Save to CSV on exit
+        try {
+            csvHelper.writeAll(students, CSV_PATH);
+            System.out.println("Saved students to CSV.");
+        } catch (IOException e) {
+            System.out.println("Failed to save students: " + e.getMessage());
         }
     }
 
-    private static void createStudent(Scanner scanner) {
-        int hwTime = inputInt(scanner, "On average, how long does it take to complete homework on an average night?");
-        int numClasses = inputInt(scanner, "You will take 6 academic classes next year. True or False?");
-        //int givenNotice =
-        // TODO: fill out the rest of this
 
-        // TODO: create a student object with this information
-        StudentList.createStudent(student);
-        System.out.println("Student created successfully!");
+    private static Student inputStudent(Scanner scanner) {
+        System.out.print("Homework time: ");
+        int hwTime = Integer.parseInt(scanner.nextLine());
+        System.out.print("Number of classes: ");
+        int numClasses = Integer.parseInt(scanner.nextLine());
+        System.out.print("Given notice (true/false): ");
+        boolean givenNotice = Boolean.parseBoolean(scanner.nextLine());
+        System.out.print("Support (true/false): ");
+        boolean support = Boolean.parseBoolean(scanner.nextLine());
+        System.out.print("Extracurricular activities: ");
+        String extraC = scanner.nextLine();
+        System.out.print("Subject (");
+        for (Subject s : Subject.values()) {
+            System.out.print(s.name() + " ");
+        }
+        System.out.print("): ");
+        Subject subject = Subject.valueOf(scanner.nextLine().toUpperCase());
+
+        return new Student(hwTime, numClasses, givenNotice, support, extraC, subject);
     }
 
-    private static void readStudents(Scanner scanner) {
-        List<Student> students = StudentList.readStudents();
-        // TODO: print out each student
-    }
-
-    private static void updateStudent(Scanner scanner) {
-        // TODO: ask for new information to update student
-
-        Student student = new Student(id, name, course);
-        StudentList.updateStudent(student);
-        System.out.println("Student updated successfully!");
-    }
-
-    private static void deleteStudent(Scanner scanner) {
-        // TODO: ask for student ID and store in a variable
-
-        Student student = new Student(id, "", "");
-        StudentList.deleteStudent(student);
-        System.out.println("Student deleted successfully!");
-    }
-
-    private static String input(Scanner scanner, String prompt) {
-        System.out.print(prompt);
-        return scanner.nextLine();
-    }
-
-    private static int inputInt(Scanner scanner, String prompt) {
-        System.out.print(prompt);
-        return scanner.nextInt();
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

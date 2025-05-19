@@ -18,6 +18,7 @@ public interface CsvSerializable<T extends CsvSerializable<T>> {
         List<String> lines = items.stream()
                 .map(CsvSerializable::toLine)
                 .toList();
+        Files.write(path, lines);
     }
 
     default List<T> readAll(Path path) throws IOException {

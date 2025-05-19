@@ -13,7 +13,7 @@ public class Student implements CsvSerializable<Student> {
         this.id = UUID.randomUUID().toString();
         this.hwTime = hwTime;
         this.numClasses = numClasses;
-        this.givenNotice = givenNotice;
+        this.givenNotice =   givenNotice;
         this.support = support;
         this.extraC = extraC;
         this.subject = subject;
@@ -74,13 +74,20 @@ public class Student implements CsvSerializable<Student> {
 
     @Override
     public String toLine() {
-        // TODO
-        return "";
+        return id + DELIM + hwTime + DELIM + numClasses + DELIM + givenNotice + DELIM + support + DELIM + extraC + DELIM + subject;
     }
 
+    @Override
     public Student fromLine(String line) {
-        // TODO
-        return new Student(0, 0, false, false, null, null);
+        String[] parts = line.split(DELIM);
+        return new Student(
+                Integer.parseInt(parts[1]),
+                Integer.parseInt(parts[2]),
+                Boolean.parseBoolean(parts[3]),
+                Boolean.parseBoolean(parts[4]),
+                parts[5],
+                Subject.fromName(parts[6])
+        );
     }
 
 
