@@ -3,16 +3,16 @@ import java.util.UUID;
 public class Student {
     private final String id;
     private int hwTime;
-    private int numClasses;
+    private boolean hasSixClasses;
     private boolean givenNotice; // You feel like you are given enough notice before assessments.
-    private boolean support;
+    private int support;
     private String extraC; // Do you engage in any extracurricular activities?(if so please list them)
     private Subject subject; // string question
 
-    public Student(int hwTime, int numClasses, boolean givenNotice, boolean support, String extraC, Subject subject) {
+    public Student(int hwTime, boolean numClasses, boolean givenNotice, int support, String extraC, Subject subject) {
         this.id = UUID.randomUUID().toString();
         this.hwTime = hwTime;
-        this.numClasses = numClasses;
+        this.hasSixClasses = numClasses;
         this.givenNotice = givenNotice;
         this.support = support;
         this.extraC = extraC;
@@ -32,12 +32,12 @@ public class Student {
         this.hwTime = hwTime;
     }
 
-    public int getNumClasses() {
-        return numClasses;
+    public boolean getNumClasses() {
+        return hasSixClasses;
     }
 
-    public void setNumClasses(int numClasses) {
-        this.numClasses = numClasses;
+    public void setNumClasses(boolean numClasses) {
+        this.hasSixClasses = numClasses;
     }
 
     public boolean isGivenNotice() {
@@ -48,11 +48,11 @@ public class Student {
         this.givenNotice = givenNotice;
     }
 
-    public boolean isSupport() {
+    public int isSupport() {
         return support;
     }
 
-    public void setSupport(boolean support) {
+    public void setSupport(int support) {
         this.support = support;
     }
 
