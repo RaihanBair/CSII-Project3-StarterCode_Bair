@@ -42,10 +42,15 @@ public class Main {
     }
 
     private static void createStudent(Scanner scanner) {
+
         int hwTime = inputInt(scanner, "On average, how long does it take to complete homework on an average night?");
-        int numClasses = inputInt(scanner, "You will take 6 academic classes next year. True or False?");
-        //int givenNotice =
+        int support = inputInt(scanner, "How supported do you feel by your teachers?");
+        String extraC = input(scanner, "How supported do you feel by your teachers?");
+        Subject subject = inputSubject(scanner, "How supported do you feel by your teachers?");
+        boolean numClasses = inputBoolean(scanner, "You will take 6 academic classes next year. True or False?");
+        boolean givenNotice = inputBoolean(scanner, "You feel like you are given enough notice before assessments. True or false?");
         // TODO: fill out the rest of this
+
 
         // TODO: create a student object with this information
         StudentList.createStudent(student);
@@ -77,9 +82,18 @@ public class Main {
         System.out.print(prompt);
         return scanner.nextLine();
     }
+    private static Subject inputSubject(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        String subject = scanner.nextLine();
+        return Subject.fromName(subject);
+    }
 
     private static int inputInt(Scanner scanner, String prompt) {
         System.out.print(prompt);
         return scanner.nextInt();
+    }
+    private static boolean inputBoolean(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        return scanner.nextBoolean();
     }
 }
