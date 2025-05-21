@@ -41,6 +41,7 @@ public class Main {
                     break;
 
                 case "2":
+                    list(students);
                     System.out.print("Index to remove: ");
                     int r = parseIndex(scanner, students.size());
                     if (r >= 0) {
@@ -56,6 +57,7 @@ public class Main {
                     break;
 
                 case "4":
+                    list(students);
                     System.out.print("Index to edit: ");
                     int i = parseIndex(scanner, students.size());
                     if (i >= 0) {
@@ -129,7 +131,7 @@ public class Main {
             System.out.println("(no students)");
         }
         for (int i = 0; i < students.size(); i++) {
-            System.out.println(i + ": " + students.get(i));
+            System.out.println((i+1) + ": " + students.get(i));
         }
     }
 
