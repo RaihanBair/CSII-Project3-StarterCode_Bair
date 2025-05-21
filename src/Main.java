@@ -4,6 +4,9 @@ import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Scanner;
 
+import java.awt.Desktop;
+import java.io.File;
+
 public class Main {
     private static final String CSV_PATH = "students.csv";
 
@@ -30,6 +33,7 @@ public class Main {
             System.out.println("3. List Students");
             System.out.println("4. Edit Student");
             System.out.println("5. Analyze Data");
+            System.out.println("6. Open CSV");
             System.out.println("0. Exit");
             System.out.print("Choice: ");
 
@@ -70,6 +74,11 @@ public class Main {
 
                 case "5":
                     analyze(students);
+                    pause(scanner);
+                    break;
+
+                case "6":
+                    openCsv(CSV_PATH);
                     pause(scanner);
                     break;
 
@@ -165,5 +174,18 @@ public class Main {
     private static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    private static void openCsv(String path) {
+        if (!Desktop.isDesktopSupported()) {
+            System.out.println("Opening files isn't supported on this platform.");
+            return;
+        }
+        try {
+            Desktop.getDesktop().open(new File(path));
+            System.out.println("Launched CSV in default app.");
+        } catch (IOException e) {
+            System.out.println("Failed to open CSV: " + e.getMessage());
+        }
     }
 }
